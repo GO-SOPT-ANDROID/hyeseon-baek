@@ -20,6 +20,7 @@ import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.join.JoinActivity
+import org.android.go.sopt.utiil.UtilObject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -27,9 +28,13 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var signupResultLauncher : ActivityResultLauncher<Intent>
     private var userData : User? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        if(isSavedCheck()){
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         setContentView(binding.root)
         setSignupbtnEvent()
         setLoginbtnEvent()
@@ -37,17 +42,23 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setLoginbtnEvent(){
         binding.loginBtn.setOnClickListener {
-            if(isCheck()){
+            if(isLoginCheck()){
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("USER", userData)
                 startActivity(intent)
                 Toast.makeText(this@LoginActivity, getString(R.string.login_success_string), Toast.LENGTH_SHORT).show()
+                UtilObject.setID(this,userData?.id.toString())
+                UtilObject.setPW(this,userData?.pw.toString())
             }
         }
     }
 
-    private fun isCheck(): Boolean{
+    private fun isLoginCheck(): Boolean{
         return userData?.id  == binding.etID.text.toString() && userData?.pw == binding.etPW.text.toString()
+    }
+
+    private fun isSavedCheck():Boolean{
+        return UtilObject.getID(this).isNotBlank() && UtilObject.getPW(this).isNotBlank()
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
