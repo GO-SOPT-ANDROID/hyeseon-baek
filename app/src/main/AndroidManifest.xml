@@ -16,9 +16,13 @@
             android:exported="false" />
         <activity
             android:name=".presentation.join.JoinActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
