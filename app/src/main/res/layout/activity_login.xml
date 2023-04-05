@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:hint="@string/login_et_id"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/tv_ID">
 
     </EditText>
