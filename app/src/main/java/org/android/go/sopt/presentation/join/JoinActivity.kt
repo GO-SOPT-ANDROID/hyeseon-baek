@@ -3,6 +3,8 @@ package org.android.go.sopt.presentation.join
 import android.content.Intent
 import android.opengl.ETC1.isValid
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -61,6 +63,11 @@ class JoinActivity : AppCompatActivity() {
             binding.root, string , Snackbar.LENGTH_SHORT
         ).show()
     }
-
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val imm: InputMethodManager =
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        return super.dispatchTouchEvent(ev)
+    }
 
 }
