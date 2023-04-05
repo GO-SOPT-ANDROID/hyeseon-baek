@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.join.JoinActivity">
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/join_tv_head"
+        android:layout_width="match_parent"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/join_tv_singup"
+        app:layout_constraintBottom_toTopOf="@id/join_tv_ID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/join_tv_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:textSize="20sp"
+        android:text="@string/login_tv_id"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/join_tv_head" />
+
+    <EditText
+        android:id="@+id/join_et_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:hint="@string/login_et_id"
+        app:layout_constraintTop_toBottomOf="@id/join_tv_ID">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/join_tv_PW"
+        android:text="@string/login_tv_pw"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/join_et_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/join_et_PW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:hint="@string/login_et_pw"
+        app:layout_constraintTop_toBottomOf="@id/join_tv_PW" />
+
+    <TextView
+        android:id="@+id/join_tv_name"
+        android:text="@string/join_tv_name"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/join_et_PW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/join_et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:hint="@string/join_et_name"
+        app:layout_constraintTop_toBottomOf="@id/join_tv_name" />
+
+
+    <TextView
+        android:id="@+id/join_tv_special"
+        android:text="@string/join_tv_special"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/join_et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/join_et_special"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:hint="@string/join_et_special"
+        app:layout_constraintTop_toBottomOf="@id/join_tv_special" />
+
+    <Button
+        android:id="@+id/join_btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:paddingVertical="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/login_btn_login"
+        app:layout_constraintTop_toBottomOf="@id/join_et_special"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
