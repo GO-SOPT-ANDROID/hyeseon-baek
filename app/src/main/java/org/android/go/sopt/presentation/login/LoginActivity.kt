@@ -32,14 +32,17 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        if(isSavedCheck()){
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+        goMain()
         setContentView(binding.root)
         setSignupbtnEvent()
         setLoginbtnEvent()
     }
 
+    private fun goMain(){
+        if(isSavedCheck()){
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
     private fun setLoginbtnEvent(){
         binding.loginBtn.setOnClickListener {
             if(isLoginCheck()){

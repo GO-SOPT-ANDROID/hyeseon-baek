@@ -17,4 +17,5 @@
     <string name="login_success_string">로그인에 성공했습니다</string>
     <string name="main_tv_name">이름 :</string>
     <string name="main_tv_special">특기 :</string>
+    <string name="main_alert">SharedPreference에 특기저장X</string>
 </resources>

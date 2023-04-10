@@ -25,11 +25,9 @@ class JoinActivity : AppCompatActivity() {
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setJoinbtnEvent()
-
-
     }
 
-    private fun setJoinbtnEvent(){
+    private fun setJoinbtnEvent() {
         binding.joinBtnSignup.setOnClickListener {
             isCheck()
         }
@@ -46,23 +44,24 @@ class JoinActivity : AppCompatActivity() {
                     binding.joinEtName.text.toString(),
                     binding.joinEtSpecial.text.toString()
                 )
-                val intent = Intent(this@JoinActivity, LoginActivity::class.java)
-                intent.putExtra("USER", userData)
-                setResult(RESULT_OK, intent)
+                Intent(this@JoinActivity, LoginActivity::class.java).apply {
+                    putExtra("USER", userData)
+                    setResult(RESULT_OK, this)
+                }
                 finish()
                 makeSnackBar(getString(R.string.join_success_string))
+                return
             }
-            else{
                 makeSnackBar(getString(R.string.join_fail_string))
-            }
         }
     }
 
-    private fun makeSnackBar(string: String){
+    private fun makeSnackBar(string: String) {
         Snackbar.make(
-            binding.root, string , Snackbar.LENGTH_SHORT
+            binding.root, string, Snackbar.LENGTH_SHORT
         ).show()
     }
+
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         val imm: InputMethodManager =
             getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager

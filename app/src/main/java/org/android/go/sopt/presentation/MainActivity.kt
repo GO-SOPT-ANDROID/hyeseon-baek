@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
     private fun getSaved(){
         //자동로그인으로 접근한경우
             binding.mainTvName.text = UtilObject.getID(this)
-            binding.mainTvSpecial.text = "SharedPreference에 특기저장X"
+            binding.mainTvSpecial.text = getString(R.string.main_alert)
     }
 }
