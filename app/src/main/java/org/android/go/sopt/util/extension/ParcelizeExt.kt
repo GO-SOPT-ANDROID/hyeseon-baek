@@ -1,4 +1,4 @@
-package org.android.go.sopt.utiil.extension
+package org.android.go.sopt.util.extension
 
 import android.content.Intent
 import android.os.Build.VERSION.SDK_INT

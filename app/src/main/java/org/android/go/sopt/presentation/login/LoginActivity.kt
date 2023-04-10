@@ -3,26 +3,23 @@ package org.android.go.sopt.presentation.login
 import android.app.Activity
 import android.content.Intent
 import android.content.Intent.EXTRA_USER
-import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.join.JoinActivity
-import org.android.go.sopt.utiil.UtilObject
-import org.android.go.sopt.utiil.extension.getParcelized
-import org.android.go.sopt.utiil.extension.showToast
+import org.android.go.sopt.util.UtilObject
+import org.android.go.sopt.util.UtilObject.getID
+import org.android.go.sopt.util.UtilObject.getPW
+import org.android.go.sopt.util.extension.getParcelized
+import org.android.go.sopt.util.extension.showToast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -63,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isSavedCheck():Boolean{
-        return UtilObject.getID(this).isNotBlank() && UtilObject.getPW(this).isNotBlank()
+        return getID(this).isNotBlank() && getPW(this).isNotBlank()
     }
 
     private fun setSignupbtnEvent() {

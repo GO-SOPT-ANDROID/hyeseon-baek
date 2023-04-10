@@ -1,10 +1,10 @@
 package org.android.go.sopt.presentation.join
 
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.utiil.Constants.ID_MAX_LENGTH
-import org.android.go.sopt.utiil.Constants.ID_MIN_LENGTH
-import org.android.go.sopt.utiil.Constants.PW_MAX_LENGTH
-import org.android.go.sopt.utiil.Constants.PW_MIN_LENGTH
+import org.android.go.sopt.util.Constants.ID_MAX_LENGTH
+import org.android.go.sopt.util.Constants.ID_MIN_LENGTH
+import org.android.go.sopt.util.Constants.PW_MAX_LENGTH
+import org.android.go.sopt.util.Constants.PW_MIN_LENGTH
 
 class JoinViewModel : ViewModel() {
 

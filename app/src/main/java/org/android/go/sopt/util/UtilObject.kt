@@ -1,4 +1,4 @@
-package org.android.go.sopt.utiil
+package org.android.go.sopt.util
 
 import android.app.Activity
 import android.content.Context
@@ -38,5 +38,6 @@ object UtilObject {
         }
     }
 }
+
 
 

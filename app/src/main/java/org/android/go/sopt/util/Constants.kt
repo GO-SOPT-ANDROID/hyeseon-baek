@@ -1,4 +1,4 @@
-package org.android.go.sopt.utiil
+package org.android.go.sopt.util
 
 object Constants {
     const val ID_MIN_LENGTH = 6
@@ -6,3 +6,4 @@ object Constants {
     const val ID_MAX_LENGTH = 10
     const val PW_MAX_LENGTH = 12
 }
+

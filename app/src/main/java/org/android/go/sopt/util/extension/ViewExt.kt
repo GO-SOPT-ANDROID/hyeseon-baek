@@ -1,4 +1,4 @@
-package org.android.go.sopt.utiil.extension
+package org.android.go.sopt.util.extension
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
