@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/main_img_me"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@id/main_tv_name"
         app:layout_constraintDimensionRatio="1:1"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/main_tv_name"
-        android:text="이름 : "
+        android:text="@string/main_tv_name"
         android:textSize="20sp"
         android:layout_marginTop="12dp"
         android:textStyle="bold"

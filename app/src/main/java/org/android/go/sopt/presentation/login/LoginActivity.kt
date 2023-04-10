@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isLoginCheck(): Boolean{
-        return userData?.id  == binding.etID.text.toString() && userData?.pw == binding.etPW.text.toString()
+        return userData?.id  == binding.etId.text.toString() && userData?.pw == binding.etPw.text.toString()
     }
 
     private fun isSavedCheck():Boolean{
@@ -70,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK){
                     userData = result.data?.getParcelized(EXTRA_USER)
-                    binding.etID.setText(userData?.id)
-                    binding.etPW.setText(userData?.pw)
+                    binding.etId.setText(userData?.id)
+                    binding.etPw.setText(userData?.pw)
                 }
             }
         binding.joinBtn.setOnClickListener {

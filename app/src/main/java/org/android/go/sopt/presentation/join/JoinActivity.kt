@@ -37,11 +37,11 @@ class JoinActivity : AppCompatActivity() {
 
     private fun isCheck() {
         with(binding) {
-            if (viewModel.isValid(joinEtID.text.toString(), joinEtPW.text.toString())) {
+            if (viewModel.isValid(joinEtId.text.toString(), joinEtPw.text.toString())) {
                 //성공시 회원 정보 data class로 넣어줌
                 val userData = User(
-                    binding.joinEtID.text.toString(),
-                    binding.joinEtPW.text.toString(),
+                    binding.joinEtId.text.toString(),
+                    binding.joinEtPw.text.toString(),
                     binding.joinEtName.text.toString(),
                     binding.joinEtSpecial.text.toString()
                 )
