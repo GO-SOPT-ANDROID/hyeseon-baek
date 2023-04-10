@@ -1,6 +1,7 @@
 package org.android.go.sopt.presentation
 
 import android.annotation.SuppressLint
+import android.content.Intent.EXTRA_USER
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun putData(){
-        userData = intent.getParcelableExtra("USER", User::class.java)
+        userData = intent.getParcelableExtra(EXTRA_USER, User::class.java)
         binding.mainTvName.text = getString(R.string.main_tv_name) + userData?.name
         binding.mainTvSpecial.text = getString(R.string.main_tv_special) + userData?.special
     }

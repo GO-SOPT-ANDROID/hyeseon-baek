@@ -21,6 +21,7 @@ import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.join.JoinActivity
 import org.android.go.sopt.utiil.UtilObject
+import org.android.go.sopt.utiil.extension.getParcelized
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             if(isLoginCheck()){
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("USER", userData)
+                intent.putExtra(EXTRA_USER, userData)
                 startActivity(intent)
                 Toast.makeText(this@LoginActivity, getString(R.string.login_success_string), Toast.LENGTH_SHORT).show()
                 UtilObject.setID(this,userData?.id.toString())
@@ -64,12 +65,11 @@ class LoginActivity : AppCompatActivity() {
         return UtilObject.getID(this).isNotBlank() && UtilObject.getPW(this).isNotBlank()
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun setSignupbtnEvent() {
         signupResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK){
-                    userData = result.data?.getParcelableExtra("USER",User::class.java)
+                    userData = result.data?.getParcelized(EXTRA_USER)
                     binding.etID.setText(userData?.id)
                     binding.etPW.setText(userData?.pw)
                 }
@@ -80,11 +80,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun makeSnackBar(string: String){
-        Snackbar.make(
-            binding.root, string , Snackbar.LENGTH_SHORT
-        ).show()
-    }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         val imm: InputMethodManager =
@@ -92,6 +87,4 @@ class LoginActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         return super.dispatchTouchEvent(ev)
     }
-
-
 }

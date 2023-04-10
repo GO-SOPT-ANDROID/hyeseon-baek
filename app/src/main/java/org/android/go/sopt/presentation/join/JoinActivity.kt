@@ -16,6 +16,7 @@ import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.login.LoginActivity
 import org.android.go.sopt.presentation.login.LoginViewModel
+import org.android.go.sopt.utiil.extension.showSnackbar
 
 class JoinActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJoinBinding
@@ -45,21 +46,15 @@ class JoinActivity : AppCompatActivity() {
                     binding.joinEtSpecial.text.toString()
                 )
                 Intent(this@JoinActivity, LoginActivity::class.java).apply {
-                    putExtra("USER", userData)
+                    putExtra(Intent.EXTRA_USER, userData)
                     setResult(RESULT_OK, this)
                 }
                 finish()
-                makeSnackBar(getString(R.string.join_success_string))
+                showSnackbar(binding.root,getString(R.string.join_success_string))
                 return
             }
-                makeSnackBar(getString(R.string.join_fail_string))
+            showSnackbar(binding.root,getString(R.string.join_fail_string))
         }
-    }
-
-    private fun makeSnackBar(string: String) {
-        Snackbar.make(
-            binding.root, string, Snackbar.LENGTH_SHORT
-        ).show()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
