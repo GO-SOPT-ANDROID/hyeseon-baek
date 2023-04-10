@@ -37,7 +37,7 @@ class JoinActivity : AppCompatActivity() {
 
     private fun isCheck() {
         with(binding) {
-            if (viewModel.isValid(joinEtId.text.toString(), joinEtPw.text.toString())) {
+            if (viewModel.isValid(id = joinEtId.text.toString(), pw = joinEtPw.text.toString())) {
                 //성공시 회원 정보 data class로 넣어줌
                 val userData = User(
                     binding.joinEtId.text.toString(),

@@ -22,6 +22,7 @@ import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.join.JoinActivity
 import org.android.go.sopt.utiil.UtilObject
 import org.android.go.sopt.utiil.extension.getParcelized
+import org.android.go.sopt.utiil.extension.showToast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra(EXTRA_USER, userData)
                 startActivity(intent)
-                Toast.makeText(this@LoginActivity, getString(R.string.login_success_string), Toast.LENGTH_SHORT).show()
+                showToast(getString(R.string.login_success_string))
                 UtilObject.setID(this,userData?.id.toString())
                 UtilObject.setPW(this,userData?.pw.toString())
             }
