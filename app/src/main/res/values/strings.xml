@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">GO SOPT Android</string>
+    <string name="login_welcome">Welcome to GO Android!</string>
+    <string name="login_tv_id">ID</string>
+    <string name="login_et_id">아이디를 입력하세요</string>
+    <string name="login_tv_pw">PW</string>
+    <string name="login_et_pw">비밀번호를 입력하세요</string>
+    <string name="login_btn_login">LOGIN</string>
+    <string name="login_btn_signup">SIGN UP</string>
+    <string name="join_tv_singup">SIGN UP</string>
+    <string name="join_tv_name">NAME</string>
+    <string name="join_et_name">이름을 입력하세요</string>
+    <string name="join_tv_special">SPECIALITY</string>
+    <string name="join_et_special">특기를 입력하세요</string>
+    <string name="join_success_string">회원가입이 완료되었습니다</string>
+    <string name="join_fail_string">회원가입 규칙에 맞지않습니다</string>
+    <string name="login_success_string">로그인에 성공했습니다</string>
+    <string name="main_tv_name">이름 :</string>
+    <string name="main_tv_special">특기 :</string>
+    <string name="main_alert">SharedPreference에 특기저장X</string>
 </resources>
