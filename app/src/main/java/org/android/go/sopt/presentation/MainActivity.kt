@@ -7,7 +7,7 @@ import android.os.Bundle
 import org.android.go.sopt.R
 import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityMainBinding
-import org.android.go.sopt.util.UtilObject.getID
+import org.android.go.sopt.util.PrefUtilObject.getID
 
 class MainActivity : AppCompatActivity() {
     private var userData : User? = null

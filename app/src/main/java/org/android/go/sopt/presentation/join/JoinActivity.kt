@@ -10,6 +10,7 @@ import org.android.go.sopt.R
 import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.presentation.login.LoginActivity
+import org.android.go.sopt.util.extension.hideKeyboard
 import org.android.go.sopt.util.extension.showSnackbar
 
 class JoinActivity : AppCompatActivity() {
@@ -19,12 +20,19 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setJoinbtnEvent()
+        setJoinbtnCheckEvent()
+        initLayout()
     }
 
-    private fun setJoinbtnEvent() {
+    private fun setJoinbtnCheckEvent() {
         binding.joinBtnSignup.setOnClickListener {
             isCheck()
+        }
+    }
+
+    private fun initLayout(){
+        binding.root.setOnClickListener {
+            hideKeyboard()
         }
     }
 

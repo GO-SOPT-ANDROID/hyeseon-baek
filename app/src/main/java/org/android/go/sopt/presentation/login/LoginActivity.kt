@@ -15,10 +15,11 @@ import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.join.JoinActivity
-import org.android.go.sopt.util.UtilObject
-import org.android.go.sopt.util.UtilObject.getID
-import org.android.go.sopt.util.UtilObject.getPW
+import org.android.go.sopt.util.PrefUtilObject
+import org.android.go.sopt.util.PrefUtilObject.getID
+import org.android.go.sopt.util.PrefUtilObject.getPW
 import org.android.go.sopt.util.extension.getParcelized
+import org.android.go.sopt.util.extension.hideKeyboard
 import org.android.go.sopt.util.extension.showToast
 
 class LoginActivity : AppCompatActivity() {
@@ -35,6 +36,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSignupbtnEvent()
         setLoginbtnEvent()
+        initLayout()
+    }
+
+    private fun initLayout(){
+        binding.root.setOnClickListener {
+            hideKeyboard()
+        }
     }
 
     private fun goMain(){
@@ -49,8 +57,8 @@ class LoginActivity : AppCompatActivity() {
                 intent.putExtra(EXTRA_USER, userData)
                 startActivity(intent)
                 showToast(getString(R.string.login_success_string))
-                UtilObject.setID(this,userData?.id.toString())
-                UtilObject.setPW(this,userData?.pw.toString())
+                PrefUtilObject.setID(this,userData?.id.toString())
+                PrefUtilObject.setPW(this,userData?.pw.toString())
             }
         }
     }
@@ -78,11 +86,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
-    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        val imm: InputMethodManager =
-            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-        return super.dispatchTouchEvent(ev)
-    }
 }
