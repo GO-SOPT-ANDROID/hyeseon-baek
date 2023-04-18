@@ -1,20 +1,18 @@
-package org.android.go.sopt.utiil
+package org.android.go.sopt.util
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.view.View
-import android.view.inputmethod.InputMethodManager
+import androidx.core.content.edit
 
 
-object UtilObject {
+object PrefUtilObject {
     private val MY_ACCOUNT: String = "account"
     fun setID(context: Context, input: String) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = prefs.edit()
-        editor.putString("savedID", input)
-        editor.apply()
+        prefs.edit{
+            putString("savedID", input)
+        }
     }
 
     fun getID(context: Context): String {
@@ -32,10 +30,11 @@ object UtilObject {
     fun setPW(context: Context, input: String) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = prefs.edit()
-        editor.putString("savedPW", input)
-        editor.apply()
+        prefs.edit{
+            putString("savedPW", input)
+        }
     }
 }
+
 
 
