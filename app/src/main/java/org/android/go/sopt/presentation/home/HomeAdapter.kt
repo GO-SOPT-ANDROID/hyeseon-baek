@@ -3,6 +3,8 @@ package org.android.go.sopt.presentation.home
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.data.HomeItem
@@ -14,7 +16,6 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
 
     private val inflater by lazy {LayoutInflater.from(context)}
     private val item: List<Any> = listOf(
-        HomeItem.Header("Repolist"),
         HomeItem.Repo(R.drawable.userpic, "git1","author1"),
         HomeItem.Repo(R.drawable.userpic, "git2","author2"),
         HomeItem.Repo(R.drawable.userpic, "git3","author3"),
@@ -40,25 +41,22 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
             else -> { throw Exception("type error : not found")}
         }
     }
-
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         when (holder) {
-            is HomeViewHolder.HeaderViewHolder ->
-                holder.bind(item[position] as HomeItem.Header)
             is HomeViewHolder.RepoViewHolder ->
-                holder.bind(item[position] as HomeItem.Repo)
+                holder.bind(item[position-1] as HomeItem.Repo)
+            else -> {}
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(item[position]) {
-            is HomeItem.Header -> HEADER_VIEW_TYPE
-            is HomeItem.Repo -> REPO_VIEW_TYPE
-            else -> {throw Exception("type error : not found")}
+        return when(position) {
+             0 -> HEADER_VIEW_TYPE
+            else -> REPO_VIEW_TYPE
         }
     }
     override fun getItemCount(): Int {
-        return item.size
+        return item.size + 1
     }
 
     companion object {
