@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentHomeBinding
+import org.android.go.sopt.util.extension.scrollToTop
 
 class HomeFragment : Fragment() {
 
@@ -25,7 +28,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.rvHome.scrollToTop()
         binding.rvHome.adapter = HomeAdapter(requireContext())
     }
 
@@ -34,7 +37,8 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
 
-    }
-    }
+
+
+
+}

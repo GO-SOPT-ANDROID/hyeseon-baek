@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         binding.naviMain.selectedItemId = R.id.menu_home
     }
 
+
     private fun changeFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()

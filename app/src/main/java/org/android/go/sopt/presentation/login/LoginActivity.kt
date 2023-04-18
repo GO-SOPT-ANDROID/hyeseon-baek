@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Intent.EXTRA_USER
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
