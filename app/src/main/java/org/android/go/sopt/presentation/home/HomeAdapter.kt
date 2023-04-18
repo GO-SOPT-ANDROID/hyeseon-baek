@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.data.HomeItem
@@ -12,7 +14,7 @@ import org.android.go.sopt.data.HomeViewHolder
 import org.android.go.sopt.databinding.HomeItemHeaderBinding
 import org.android.go.sopt.databinding.HomeItemRepoBinding
 
-class HomeAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
+class HomeAdapter(context: Context) : ListAdapter<HomeItem.Repo, RecyclerView.ViewHolder>(diffUtil) {
 
     private val inflater by lazy {LayoutInflater.from(context)}
     private val item: List<Any> = listOf(
@@ -41,7 +43,8 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
             else -> { throw Exception("type error : not found")}
         }
     }
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HomeViewHolder.RepoViewHolder ->
                 holder.bind(item[position-1] as HomeItem.Repo)
@@ -62,5 +65,14 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
     companion object {
         const val HEADER_VIEW_TYPE = 0
         const val REPO_VIEW_TYPE = 1
+        val diffUtil = object:DiffUtil.ItemCallback<HomeItem.Repo>(){
+            override fun areItemsTheSame(oldItem: HomeItem.Repo, newItem: HomeItem.Repo): Boolean {
+                return oldItem.name == newItem.name && oldItem.author == newItem.author
+            }
+
+            override fun areContentsTheSame(oldItem: HomeItem.Repo, newItem: HomeItem.Repo): Boolean {
+                return oldItem == newItem && oldItem == newItem
+            }
+        }
     }
 }
