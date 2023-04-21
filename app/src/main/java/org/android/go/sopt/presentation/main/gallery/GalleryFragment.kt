@@ -20,12 +20,11 @@ class GalleryFragment : Fragment() {
     ): View? {
         _binding = FragmentGalleryBinding.inflate(inflater,container,false)
         return binding.root
-        // View를 생성하는 로직
-        // Inflate the layout for this fragment
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.galleryMotionLayout.transitionToEnd()
     }
 
     override fun onDestroy() {
