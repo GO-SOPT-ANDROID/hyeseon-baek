@@ -19,5 +19,7 @@
     <string name="main_tv_special">특기 :</string>
     <string name="main_alert">SharedPreference에 특기저장X</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="homeFragment_tv_msg">home Fragment 입니다</string>
+    <string name="hello_search_fragment">Search Fragment</string>
+    <string name="hello_gallery_fragment">Gallery Fragment</string>
+    <string name="home_header">Repo List</string>
 </resources>

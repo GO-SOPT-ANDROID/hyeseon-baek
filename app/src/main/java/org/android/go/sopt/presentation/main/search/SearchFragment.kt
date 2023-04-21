@@ -1,28 +1,27 @@
-package org.android.go.sopt.presentation.home
+package org.android.go.sopt.presentation.main.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.android.go.sopt.R
-import org.android.go.sopt.databinding.FragmentGalleryBinding
-import org.android.go.sopt.databinding.FragmentHomeBinding
+import org.android.go.sopt.databinding.FragmentSearchBinding
 
 
-class GalleryFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding?= null
-    private val binding: FragmentGalleryBinding
+
+    private var _binding: FragmentSearchBinding?= null
+    private val binding: FragmentSearchBinding
         get() = requireNotNull(_binding)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentGalleryBinding.inflate(inflater,container,false)
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater,container,false)
         return binding.root
-        // View를 생성하는 로직
         // Inflate the layout for this fragment
     }
 

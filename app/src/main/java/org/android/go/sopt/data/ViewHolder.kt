@@ -21,9 +21,11 @@ sealed class HomeViewHolder(
         private val binding: HomeItemRepoBinding
     ) : HomeViewHolder(binding) {
         fun bind(item: HomeItem.Repo) {
-            binding.homeRepoName.text = item.name
-            binding.homeRepoAuthor.text = item.author
-//            binding.itemRecyclerUserimg = item.image
+            with(binding){
+                homeRepoName.text = item.name
+                homeRepoAuthor.text = item.author
+                homeRepoImg.setImageResource(item.image)
+            }
         }
     }
 
