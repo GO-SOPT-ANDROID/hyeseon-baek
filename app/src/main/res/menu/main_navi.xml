@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/userpic"
+        android:icon="@drawable/home"
         android:title="홈"/>
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/userpic"
+        android:icon="@drawable/search"
         android:title="검색"/>
     <item
         android:id="@+id/menu_gallery"
-        android:icon="@drawable/userpic"
+        android:icon="@drawable/gallery"
         android:title="갤러리"/>
 </menu>
