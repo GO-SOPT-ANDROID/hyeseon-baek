@@ -9,10 +9,22 @@
         <KeyFrameSet>
             <KeyAttribute
                 app:framePosition="0"
+                android:alpha="0.5"
+                app:keyPositionType="parentRelative"
+                app:motionTarget="@id/text"/>
+            <KeyAttribute
+                app:framePosition="30"
+                android:alpha="0"
+                app:keyPositionType="parentRelative"
+                app:motionTarget="@id/text"/>
+            <KeyAttribute
+                app:framePosition="60"
+                android:alpha="0.5"
                 app:keyPositionType="parentRelative"
                 app:motionTarget="@id/text"/>
             <KeyAttribute
                 app:framePosition="100"
+                android:alpha="0"
                 app:keyPositionType="parentRelative"
                 app:motionTarget="@id/text"/>
         </KeyFrameSet>
