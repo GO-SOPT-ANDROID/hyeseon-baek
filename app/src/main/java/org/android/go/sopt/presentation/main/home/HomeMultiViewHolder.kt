@@ -1,17 +1,17 @@
-package org.android.go.sopt.data
+package org.android.go.sopt.presentation.main.home
 
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import org.android.go.sopt.data.HomeItem
 import org.android.go.sopt.databinding.HomeItemHeaderBinding
 import org.android.go.sopt.databinding.HomeItemRepoBinding
 
-sealed class HomeViewHolder(
+sealed class HomeMultiViewHolder(
     binding: ViewBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     data class HeaderViewHolder(
         private val binding: HomeItemHeaderBinding
-    ) : HomeViewHolder(binding) {
+    ) : HomeMultiViewHolder(binding) {
         fun bind(item: HomeItem.Header) {
             binding.itemRecyclerHeader.text = item.header
         }
@@ -19,7 +19,7 @@ sealed class HomeViewHolder(
 
     data class RepoViewHolder(
         private val binding: HomeItemRepoBinding
-    ) : HomeViewHolder(binding) {
+    ) : HomeMultiViewHolder(binding) {
         fun bind(item: HomeItem.Repo) {
             with(binding){
                 homeRepoName.text = item.name

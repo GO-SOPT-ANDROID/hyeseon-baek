@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.data.HomeItem
-import org.android.go.sopt.data.HomeViewHolder
 import org.android.go.sopt.databinding.HomeItemHeaderBinding
 import org.android.go.sopt.databinding.HomeItemRepoBinding
 
@@ -16,15 +15,15 @@ class HomeAdapter(context: Context) : ListAdapter<HomeItem.Repo, RecyclerView.Vi
 
     private val inflater by lazy {LayoutInflater.from(context)}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMultiViewHolder {
         return when (viewType) {
             HEADER_VIEW_TYPE ->
-                HomeViewHolder.HeaderViewHolder(binding = HomeItemHeaderBinding.inflate
+                HomeMultiViewHolder.HeaderViewHolder(binding = HomeItemHeaderBinding.inflate
                     ( inflater,
                     parent,
                     false))
             REPO_VIEW_TYPE ->
-                HomeViewHolder.RepoViewHolder(binding = HomeItemRepoBinding.inflate
+                HomeMultiViewHolder.RepoViewHolder(binding = HomeItemRepoBinding.inflate
                     ( inflater,
                     parent,
                     false))
@@ -34,7 +33,7 @@ class HomeAdapter(context: Context) : ListAdapter<HomeItem.Repo, RecyclerView.Vi
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is HomeViewHolder.RepoViewHolder ->
+            is HomeMultiViewHolder.RepoViewHolder ->
                 holder.bind(getItem(position) as HomeItem.Repo)
             else -> {}
         }
