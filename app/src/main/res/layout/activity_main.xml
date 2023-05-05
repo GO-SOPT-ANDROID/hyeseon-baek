@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navi_main"
-        android:tag="my_tag"
         android:name="org.android.go.sopt.presentation.main.home.HomeFragment">
 
     </androidx.fragment.app.FragmentContainerView>

@@ -31,8 +31,4 @@ class GalleryFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-    companion object {
-
-    }
 }

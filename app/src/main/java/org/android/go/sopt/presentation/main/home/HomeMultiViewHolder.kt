@@ -12,9 +12,6 @@ sealed class HomeMultiViewHolder(
     data class HeaderViewHolder(
         private val binding: HomeItemHeaderBinding
     ) : HomeMultiViewHolder(binding) {
-        fun bind(item: HomeItem.Header) {
-            binding.itemRecyclerHeader.text = item.header
-        }
     }
 
     data class RepoViewHolder(
