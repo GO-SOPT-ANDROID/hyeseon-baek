@@ -6,43 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
 
-    <ImageView
-        android:id="@+id/main_img_me"
+        android:id="@+id/fcv_main"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@id/main_tv_name"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/userpic" />
+        app:layout_constraintBottom_toTopOf="@id/navi_main"
+        android:name="org.android.go.sopt.presentation.main.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/main_tv_name"
-        android:text="@string/main_tv_name"
-        android:textSize="20sp"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/main_img_me"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    </androidx.fragment.app.FragmentContainerView>
 
-
-    <TextView
-        android:id="@+id/main_tv_special"
-        android:text="@string/main_tv_special"
-        android:textSize="20sp"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/main_tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navi_main"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:menu="@menu/main_navi"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
