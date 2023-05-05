@@ -1,15 +1,14 @@
 
 ---
 
-### 👨🏻‍💻 1주차 
+### 👨🏻‍💻 2주차 
 
 - 세미나
 
-- Activity 생명주기
+- Fragment 생명주기
 
-- EditText InputType
+- RecyclerView, Adapter
 
-- Back Stack
 
 
 ---
@@ -20,7 +19,7 @@
 
 - feat: 기존에 없던 기능 개발
 
-- ADD : 부가적인 파일 추가
+- add : 부가적인 파일 추가
 
 - fix: 버그, 이슈 수정
 
