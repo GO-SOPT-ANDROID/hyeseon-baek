@@ -22,4 +22,7 @@
     <string name="hello_search_fragment">Search Fragment</string>
     <string name="hello_gallery_fragment">Gallery Fragment</string>
     <string name="home_header">Repo List</string>
+    <string name="navi_home_string">홈</string>
+    <string name="navi_search_string">검색</string>
+    <string name="navi_gallery_string">갤러리</string>
 </resources>

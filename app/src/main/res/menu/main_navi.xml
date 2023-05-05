@@ -3,13 +3,13 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/home"
-        android:title="홈"/>
+        android:title="@string/navi_home_string"/>
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/search"
-        android:title="검색"/>
+        android:title="@string/navi_search_string"/>
     <item
         android:id="@+id/menu_gallery"
         android:icon="@drawable/gallery"
-        android:title="갤러리"/>
+        android:title="@string/navi_gallery_string"/>
 </menu>
