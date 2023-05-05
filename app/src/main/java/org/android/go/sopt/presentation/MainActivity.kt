@@ -2,7 +2,9 @@ package org.android.go.sopt.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import org.android.go.sopt.R
 import org.android.go.sopt.data.User
 import org.android.go.sopt.databinding.ActivityMainBinding
@@ -55,9 +57,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun changeFragment(fragment: Fragment){
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_main,fragment)
-            .commit()
+        supportFragmentManager.commit{
+            replace(R.id.fcv_main, fragment)
+        }
     }
 }
