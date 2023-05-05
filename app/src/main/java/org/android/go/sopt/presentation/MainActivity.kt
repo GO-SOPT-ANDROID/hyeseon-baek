@@ -17,8 +17,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initNavigation()
+        initBnvReselectedListener()
+    }
+
+    private fun initBnvReselectedListener() {
+        binding.naviMain.setOnItemReselectedListener {
+            val currentFragment = supportFragmentManager.fragments[0]
+            if (it.itemId == R.id.menu_home)
+                (currentFragment as HomeFragment).scrollToTop()
+        }
     }
 
     private fun initNavigation() {
@@ -41,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             )
             true
         }
+        changeFragment(HomeFragment())
         binding.naviMain.selectedItemId = R.id.menu_home
     }
 
