@@ -1,4 +1,4 @@
-package org.android.go.sopt.data
+package org.android.go.sopt.data.model.main
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
