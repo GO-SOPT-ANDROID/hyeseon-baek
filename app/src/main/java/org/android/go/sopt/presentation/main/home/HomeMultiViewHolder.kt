@@ -2,7 +2,7 @@ package org.android.go.sopt.presentation.main.home
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import org.android.go.sopt.data.HomeItem
+import org.android.go.sopt.data.model.main.HomeItem
 import org.android.go.sopt.databinding.HomeItemHeaderBinding
 import org.android.go.sopt.databinding.HomeItemRepoBinding
 

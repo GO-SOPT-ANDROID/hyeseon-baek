@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.R
-import org.android.go.sopt.data.HomeItem
+import org.android.go.sopt.data.model.main.HomeItem
 import org.android.go.sopt.databinding.HomeItemHeaderBinding
 import org.android.go.sopt.databinding.HomeItemRepoBinding
 

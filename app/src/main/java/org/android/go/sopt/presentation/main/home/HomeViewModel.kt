@@ -2,7 +2,7 @@ package org.android.go.sopt.presentation.main.home
 
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.R
-import org.android.go.sopt.data.HomeItem
+import org.android.go.sopt.data.model.main.HomeItem
 
 class HomeViewModel : ViewModel() {
     val fakeRepoList = listOf(
