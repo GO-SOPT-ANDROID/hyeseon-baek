@@ -8,16 +8,17 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import org.android.go.sopt.BuildConfig
 import org.android.go.sopt.data.service.SignUpService
-import org.android.go.sopt.util.Constants.BASE_URL
 import retrofit2.Retrofit
 import java.io.IOException
 
 object ApiFactory {
+    private const val USER_BASE_URL = BuildConfig.USER_BASE_URL
     @OptIn(ExperimentalSerializationApi::class)
     val retrofit: Retrofit by lazy{
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(USER_BASE_URL)
             .client(okHttpClient(AppInterceptor()))
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
