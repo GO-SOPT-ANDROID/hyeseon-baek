@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="vm"
+            type="org.android.go.sopt.presentation.login.LoginViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,6 +50,7 @@
         android:layout_marginHorizontal="30dp"
         android:hint="@string/login_et_id"
         android:inputType="text"
+        android:text="@={vm.id}"
         app:layout_constraintTop_toBottomOf="@id/tv_id">
 
     </EditText>
@@ -68,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:hint="@string/login_et_pw"
+        android:text="@={vm.password}"
         app:layout_constraintTop_toBottomOf="@id/tv_pw" />
 
     <Button
