@@ -9,10 +9,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import org.android.go.sopt.R
 import androidx.activity.viewModels
-import org.android.go.sopt.data.User
+import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
-import org.android.go.sopt.presentation.join.JoinActivity
+import org.android.go.sopt.presentation.signup.SignupActivity
 import org.android.go.sopt.util.PrefUtilObject
 import org.android.go.sopt.util.PrefUtilObject.getID
 import org.android.go.sopt.util.PrefUtilObject.getPW
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         binding.joinBtn.setOnClickListener {
-            val joinIntent = Intent(this,JoinActivity::class.java)
+            val joinIntent = Intent(this,SignupActivity::class.java)
             signupResultLauncher.launch(joinIntent)
         }
     }
