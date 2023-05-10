@@ -132,6 +132,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="50dp"
             android:paddingVertical="15dp"
+            android:enabled="false"
             android:text="@string/login_btn_signup"
             app:layout_constraintTop_toBottomOf="@id/signup_et_special" />
     </androidx.constraintlayout.widget.ConstraintLayout>

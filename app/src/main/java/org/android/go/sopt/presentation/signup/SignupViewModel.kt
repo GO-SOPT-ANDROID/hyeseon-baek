@@ -1,9 +1,9 @@
 package org.android.go.sopt.presentation.signup
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.model.main.User
-import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.util.Constants.ID_MAX_LENGTH
 import org.android.go.sopt.util.Constants.ID_MIN_LENGTH
 import org.android.go.sopt.util.Constants.PW_MAX_LENGTH
@@ -26,8 +26,16 @@ class SignupViewModel : ViewModel() {
     val speciality: String
         get() = _speciality.value?.trim() ?: ""
 
-    fun isValid(id: String? , pw: String?): Boolean{
-        return !id.isNullOrBlank() && id.length in ID_MIN_LENGTH..ID_MAX_LENGTH && !pw.isNullOrBlank() && pw.length in PW_MIN_LENGTH..PW_MAX_LENGTH
+    val _isValidAndFilled = MutableLiveData<Boolean>()
+
+    fun getIsValidAndFilled(): LiveData<Boolean> {
+        _isValidAndFilled.value = isValidAndFilled()
+        return _isValidAndFilled
+    }
+
+    fun isValidAndFilled(): Boolean{
+        return id.length in ID_MIN_LENGTH..ID_MAX_LENGTH && password.length in PW_MIN_LENGTH..PW_MAX_LENGTH
+                && name.isNotBlank() && speciality.isNotBlank()
     }
 
     fun getUser(): User {

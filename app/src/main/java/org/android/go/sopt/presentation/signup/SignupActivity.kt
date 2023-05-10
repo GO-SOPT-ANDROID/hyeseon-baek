@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import org.android.go.sopt.R
 import org.android.go.sopt.data.ApiFactory
 import org.android.go.sopt.data.model.request.RequestSignUpDto
@@ -23,13 +24,15 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private val viewModel by viewModels<SignupViewModel>()
     private val singUpService = ApiFactory.ServicePool.signUpService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         binding.vm = viewModel
         setContentView(binding.root)
-        setSignUpBtnCheckEvent()
         initLayout()
+        checkIsValidandFilled()
+        setSignUpBtnCheckEvent()
     }
 
     private fun initLayout(){
@@ -38,22 +41,21 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSignUpBtnCheckEvent() {
-        binding.signupBtn.setOnClickListener {
-            checkIsValid()
+    private fun checkIsValidandFilled() {
+        viewModel.getIsValidAndFilled().observe(this) { _isValidAndFilled ->
+            binding.signupBtn.isEnabled = _isValidAndFilled
+            Log.e("over",_isValidAndFilled.toString())
         }
     }
 
-
-    private fun checkIsValid() {
+    private fun setSignUpBtnCheckEvent() {
         with(binding) {
-            if (viewModel.isValid(id = signupEtId.text.toString(), pw = signupEtPw.text.toString())) {
+            signupBtn.setOnClickListener {
                 completeSignUp()
-            }else{
-                showSnackbar(binding.root,getString(R.string.join_condition_fail_string))
             }
         }
     }
+
 
     private fun completeSignUp() {
         val userData = viewModel.getUser()
