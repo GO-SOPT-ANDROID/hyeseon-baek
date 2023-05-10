@@ -13,7 +13,8 @@
     <string name="join_tv_special">SPECIALITY</string>
     <string name="join_et_special">특기를 입력하세요</string>
     <string name="join_success_string">회원가입이 완료되었습니다</string>
-    <string name="join_fail_string">회원가입 규칙에 맞지않습니다</string>
+    <string name="join_condition_fail_string">회원가입 규칙에 맞지않습니다</string>
+    <string name="join_fail_string">회원가입에 실패했습니다</string>
     <string name="login_success_string">로그인에 성공했습니다</string>
     <string name="main_tv_name">이름 :</string>
     <string name="main_tv_special">특기 :</string>
