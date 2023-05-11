@@ -27,6 +27,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "USER_BASE_URL", properties["user.base.url"]
+        buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
     }
 
     buildTypes {
@@ -80,4 +81,7 @@ dependencies {
     // hilt
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    // glider
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }

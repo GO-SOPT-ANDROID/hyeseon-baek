@@ -33,15 +33,24 @@ object RetrofitModule {
 
 
     private const val USER_BASE_URL = BuildConfig.USER_BASE_URL
+    private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    @ApiModule.SignRetrofit
+    fun provideSpringRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(USER_BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
-
+    @Singleton
+    @Provides
+    @ApiModule.ReqresRetrofit
+    fun provideReqresRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .baseUrl(REQRES_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .build()
 
     class AppInterceptor : Interceptor {
         @Throws(IOException::class)
