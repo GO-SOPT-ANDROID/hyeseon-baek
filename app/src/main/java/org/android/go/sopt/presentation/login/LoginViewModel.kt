@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.data.model.request.RequestSignInDto
-import org.android.go.sopt.data.model.request.RequestSignUpDto
-import org.android.go.sopt.data.repository.AuthRepositoryImpl
 import org.android.go.sopt.domain.AuthRepository
 import javax.inject.Inject
 

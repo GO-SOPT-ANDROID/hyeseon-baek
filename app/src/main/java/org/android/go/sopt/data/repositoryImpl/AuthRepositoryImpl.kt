@@ -1,4 +1,4 @@
-package org.android.go.sopt.data.repository
+package org.android.go.sopt.data.repositoryImpl
 
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.data.model.request.RequestSignUpDto
