@@ -6,56 +6,51 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Job
+import org.android.go.sopt.data.model.main.Follower
 import org.android.go.sopt.data.model.main.HomeItem
-import org.android.go.sopt.databinding.HomeItemHeaderBinding
-import org.android.go.sopt.databinding.HomeItemRepoBinding
+import org.android.go.sopt.data.model.response.ResponseFollowerDto
+import org.android.go.sopt.data.model.response.ResponseSignInDto
+import org.android.go.sopt.databinding.HomeItemFollowerBinding
 
-class HomeAdapter(context: Context) : ListAdapter<HomeItem.Repo, RecyclerView.ViewHolder>(diffUtil) {
+class HomeAdapter() : ListAdapter<ResponseFollowerDto, HomeAdapter.FollowerViewHolder>(diffUtil) {
 
-    private val inflater by lazy {LayoutInflater.from(context)}
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMultiViewHolder {
-        return when (viewType) {
-            HEADER_VIEW_TYPE ->
-                HomeMultiViewHolder.HeaderViewHolder(binding = HomeItemHeaderBinding.inflate
-                    ( inflater,
-                    parent,
-                    false))
-            REPO_VIEW_TYPE ->
-                HomeMultiViewHolder.RepoViewHolder(binding = HomeItemRepoBinding.inflate
-                    ( inflater,
-                    parent,
-                    false))
-            else -> { throw Exception("type error : not found")}
+    class FollowerViewHolder(
+        private val binding: HomeItemFollowerBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun onBind(data: ResponseFollowerDto) {
+            binding.follower = data.convertToFollower().first()
+            binding.executePendingBindings()
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is HomeMultiViewHolder.RepoViewHolder ->
-                holder.bind(getItem(position) as HomeItem.Repo)
-            else -> {}
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {
+        val binding = HomeItemFollowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FollowerViewHolder(binding)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when(position) {
-             0 -> HEADER_VIEW_TYPE
-            else -> REPO_VIEW_TYPE
-        }
+    override fun onBindViewHolder(holder: FollowerViewHolder, position: Int) {
+        holder.onBind(getItem(position))
     }
+
 
     companion object {
-        const val HEADER_VIEW_TYPE = 0
-        const val REPO_VIEW_TYPE = 1
-        val diffUtil = object:DiffUtil.ItemCallback<HomeItem.Repo>(){
-            override fun areItemsTheSame(oldItem: HomeItem.Repo, newItem: HomeItem.Repo): Boolean {
-                return oldItem.name == newItem.name && oldItem.author == newItem.author
+        val diffUtil = object:DiffUtil.ItemCallback<ResponseFollowerDto>(){
+            override fun areItemsTheSame(
+                oldItem: ResponseFollowerDto,
+                newItem: ResponseFollowerDto
+            ): Boolean {
+                return newItem.data == oldItem.data
             }
 
-            override fun areContentsTheSame(oldItem: HomeItem.Repo, newItem: HomeItem.Repo): Boolean {
-                return oldItem == newItem && oldItem == newItem
+            override fun areContentsTheSame(
+                oldItem: ResponseFollowerDto,
+                newItem: ResponseFollowerDto
+            ): Boolean {
+                return newItem == oldItem
             }
         }
     }
+
+
 }

@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.android.go.sopt.databinding.FragmentHomeBinding
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding?= null
@@ -25,12 +29,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter(HomeAdapter(requireContext()))
+        initAdapter()
     }
-    private fun initAdapter(adapter: HomeAdapter){
-        adapter.submitList(viewmodel.fakeRepoList)
+    private fun initAdapter(){
+        val adapter = HomeAdapter()
         binding.rvHome.adapter = adapter
+        viewmodel.getFollowerList().observe(viewLifecycleOwner) { followerList ->
+            adapter.submitList(followerList.toMutableList())
+        }
     }
+
     fun scrollToTop(){
         val binding = _binding ?: return
         binding.rvHome.smoothScrollToPosition(0)
