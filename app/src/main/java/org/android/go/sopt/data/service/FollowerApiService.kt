@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface FollowerApiService {
     @GET("api/users?page=2")
     suspend fun getFollowerList(
-    ): Response<ResponseFollowerDto>
+    ): ResponseFollowerDto
 }

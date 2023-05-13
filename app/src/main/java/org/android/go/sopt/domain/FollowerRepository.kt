@@ -7,5 +7,5 @@ import javax.inject.Singleton
 
 
 interface FollowerRepository {
-    suspend fun getUserList(): Response<ResponseFollowerDto>
+    suspend fun getUserList(): Result<List<Follower>>
 }

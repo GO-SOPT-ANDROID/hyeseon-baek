@@ -34,8 +34,10 @@ class HomeFragment : Fragment() {
     private fun initAdapter(){
         val adapter = HomeAdapter()
         binding.rvHome.adapter = adapter
-        viewmodel.getFollowerList().observe(viewLifecycleOwner) { followerList ->
-            adapter.submitList(followerList.toMutableList())
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewmodel.followerListLiveData?.let { followerList ->
+                adapter.submitList(followerList)
+            }
         }
     }
 

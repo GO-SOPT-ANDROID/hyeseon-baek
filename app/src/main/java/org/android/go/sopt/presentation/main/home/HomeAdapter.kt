@@ -1,25 +1,23 @@
 package org.android.go.sopt.presentation.main.home
 
-import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.Job
 import org.android.go.sopt.data.model.main.Follower
-import org.android.go.sopt.data.model.main.HomeItem
 import org.android.go.sopt.data.model.response.ResponseFollowerDto
-import org.android.go.sopt.data.model.response.ResponseSignInDto
 import org.android.go.sopt.databinding.HomeItemFollowerBinding
 
-class HomeAdapter() : ListAdapter<ResponseFollowerDto, HomeAdapter.FollowerViewHolder>(diffUtil) {
+class HomeAdapter() : ListAdapter<Follower, HomeAdapter.FollowerViewHolder>(diffUtil) {
 
     class FollowerViewHolder(
         private val binding: HomeItemFollowerBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseFollowerDto) {
-            binding.follower = data.convertToFollower().first()
+        fun onBind(data: Follower) {
+            binding.follower = data
+            Log.e("binding", data.toString())
             binding.executePendingBindings()
         }
     }
@@ -35,17 +33,17 @@ class HomeAdapter() : ListAdapter<ResponseFollowerDto, HomeAdapter.FollowerViewH
 
 
     companion object {
-        val diffUtil = object:DiffUtil.ItemCallback<ResponseFollowerDto>(){
+        val diffUtil = object:DiffUtil.ItemCallback<Follower>(){
             override fun areItemsTheSame(
-                oldItem: ResponseFollowerDto,
-                newItem: ResponseFollowerDto
+                oldItem: Follower,
+                newItem: Follower
             ): Boolean {
-                return newItem.data == oldItem.data
+                return newItem.email == oldItem.email
             }
 
             override fun areContentsTheSame(
-                oldItem: ResponseFollowerDto,
-                newItem: ResponseFollowerDto
+                oldItem: Follower,
+                newItem: Follower
             ): Boolean {
                 return newItem == oldItem
             }
