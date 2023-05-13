@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
+import org.android.go.sopt.data.model.main.Follower
 import org.android.go.sopt.data.model.main.HomeItem
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.data.model.response.ResponseFollowerDto
@@ -16,19 +17,26 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
-class HomeViewModel @Inject constructor(private val followerRepository: FollowerRepository): ViewModel(){
+class HomeViewModel @Inject constructor(private val followerRepository: FollowerRepository) :
+    ViewModel() {
 
-    fun getFollowerList(): LiveData<List<ResponseFollowerDto>> {
-        val followerListLiveData = MutableLiveData<List<ResponseFollowerDto>>()
+    private val _followerListLiveData = MutableLiveData<List<Follower>>()
+    val followerListLiveData: List<Follower>?
+        get() = _followerListLiveData.value
+
+    init {
+        getFollowerList()
+    }
+    fun getFollowerList() {
         viewModelScope.launch {
-            val response = followerRepository.getUserList()
-            if (response.isSuccessful) {
-                followerListLiveData.value = listOf(response.body()!!)
-                Log.e("getlist", "success")
-            } else {
-                Log.e("getlist", "fail")
-            }
+            followerRepository.getUserList()
+                .onSuccess { response ->
+                    _followerListLiveData.value = response
+                    Log.e("getlist", response.toString())
+                }
+                .onFailure {
+                    Log.e("getlist", "fail")
+                }
         }
-        return followerListLiveData
     }
 }
