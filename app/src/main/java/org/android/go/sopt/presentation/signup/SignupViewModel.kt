@@ -1,11 +1,11 @@
 package org.android.go.sopt.presentation.signup
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.android.go.sopt.data.model.AuthState
 import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.domain.AuthRepository
@@ -33,25 +33,59 @@ class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRep
     val speciality: String
         get() = _speciality.value?.trim() ?: ""
 
-    val _isValidAndFilled = MutableLiveData<Boolean>()
+    private val _signupState = MutableLiveData<AuthState>()
+    val signupState: LiveData<AuthState>
+        get() = _signupState
 
-    fun getIsValidAndFilled(): LiveData<Boolean> {
-        _isValidAndFilled.value = isValidAndFilled()
-        return _isValidAndFilled
+
+    private val _isIdValid = MutableLiveData<Boolean>()
+    private val _isPasswordValid = MutableLiveData<Boolean>()
+    private val _isNameValid = MutableLiveData<Boolean>()
+    private val _isSpecialityValid = MutableLiveData<Boolean>()
+
+
+    val isValidAndFilled: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        addSource(_isIdValid) { value = validateFields() }
+        addSource(_isPasswordValid) { value = validateFields() }
+        addSource(_isNameValid) { value = validateFields() }
+        addSource(_isSpecialityValid) { value = validateFields() }
     }
 
-    fun isValidAndFilled(): Boolean{
-        return id.length in ID_MIN_LENGTH..ID_MAX_LENGTH && password.length in PW_MIN_LENGTH..PW_MAX_LENGTH
-                && name.isNotBlank() && speciality.isNotBlank()
+    init {
+        _isIdValid.value = false
+        _isPasswordValid.value = false
+        _isNameValid.value = false
+        _isSpecialityValid.value = false
+    }
+    private fun validateFields(): Boolean {
+        return _isIdValid.value == true
+                && _isPasswordValid.value == true
+                && _isNameValid.value == true
+                && _isSpecialityValid.value == true
+    }
+
+    fun validateId(text: String) {
+        _isIdValid.value = text.trim().length in ID_MIN_LENGTH..ID_MAX_LENGTH
+    }
+
+    fun validatePassword(text: String) {
+        _isPasswordValid.value = text.trim().length in PW_MIN_LENGTH..PW_MAX_LENGTH
+    }
+
+    fun validateName(text: String) {
+        _isNameValid.value = text.trim().isNotBlank()
+    }
+
+    fun validateSpeciality(text: String) {
+        _isSpecialityValid.value = text.trim().isNotBlank()
     }
 
     fun signUp(requestSignUpDto: RequestSignUpDto) = viewModelScope.launch {
         val response = apiAuthRepository.postSignUp(requestSignUpDto)
         if (response.isSuccessful) {
-            //TODO: livedata로 state 적용해보기
-            Log.e("signup", "success")
+            _signupState.value = AuthState.SUCCESS
         } else {
-            Log.e("signup", "fail")
+            _signupState.value = AuthState.FAIL
         }
     }
     fun getUser(): User {
