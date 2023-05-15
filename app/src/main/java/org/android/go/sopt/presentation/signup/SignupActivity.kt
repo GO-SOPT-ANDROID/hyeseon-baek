@@ -21,15 +21,8 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         binding.vm = viewModel
         setContentView(binding.root)
-        initLayout()
         checkIsValidandFilled()
         setSignUpBtnCheckEvent()
-    }
-
-    private fun initLayout(){
-        binding.root.setOnClickListener {
-            hideKeyboard()
-        }
     }
 
     private fun checkIsValidandFilled() {

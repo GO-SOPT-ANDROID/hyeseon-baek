@@ -9,8 +9,8 @@ import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.domain.AuthRepository
 import javax.inject.Inject
-
-@dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+@HiltViewModel
 class LoginViewModel @Inject constructor(private val apiAuthRepository: AuthRepository): ViewModel(){
 
     val _id = MutableLiveData("")

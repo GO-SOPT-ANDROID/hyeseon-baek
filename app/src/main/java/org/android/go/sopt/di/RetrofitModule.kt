@@ -12,6 +12,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.android.go.sopt.BuildConfig
+import org.android.go.sopt.BuildConfig.REQRES_BASE_URL
+import org.android.go.sopt.BuildConfig.USER_BASE_URL
 import retrofit2.Retrofit
 import java.io.IOException
 import javax.inject.Singleton
@@ -30,10 +32,6 @@ object RetrofitModule {
     } else {
         OkHttpClient.Builder().build()
     }
-
-
-    private const val USER_BASE_URL = BuildConfig.USER_BASE_URL
-    private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
     @Singleton
     @Provides
     @ApiModule.SignRetrofit
