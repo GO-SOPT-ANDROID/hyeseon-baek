@@ -1,29 +1,43 @@
 package org.android.go.sopt.data.model.response
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.android.go.sopt.data.model.main.Follower
 
 @Serializable
 data class ResponseFollowerDto(
+    @SerialName("data")
     val data: List<Data>,
+    @SerialName("page")
     val page: Int,
+    @SerialName("per_page")
     val perPage: Int,
+    @SerialName("support")
     val support: Support,
+    @SerialName("total")
     val total: Int,
+    @SerialName("total_pages")
     val totalPages: Int
 ) {
     @Serializable
     data class Data(
+        @SerialName("avatar")
         val avatar: String,
+        @SerialName("email")
         val email: String,
+        @SerialName("first_name")
         val firstName: String,
+        @SerialName("id")
         val id: Int,
+        @SerialName("last_name")
         val lastName: String
     )
     @Serializable
     data class Support(
-        val text: String,
-        val url: String
+        @SerialName("url")
+        val url: String,
+        @SerialName("text")
+        val text: String
     )
 
     fun convertToFollower() = data.map {

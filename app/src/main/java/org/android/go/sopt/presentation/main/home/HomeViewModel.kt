@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
+import org.android.go.sopt.data.model.AuthState
 import org.android.go.sopt.data.model.main.Follower
 import org.android.go.sopt.data.model.main.HomeItem
 import org.android.go.sopt.data.model.request.RequestSignInDto
@@ -19,23 +20,26 @@ import javax.inject.Inject
 @dagger.hilt.android.lifecycle.HiltViewModel
 class HomeViewModel @Inject constructor(private val followerRepository: FollowerRepository) :
     ViewModel() {
-
     private val _followerListLiveData = MutableLiveData<List<Follower>>()
     val followerListLiveData: List<Follower>?
         get() = _followerListLiveData.value
+    private val _getListState = MutableLiveData<AuthState>()
+    val getListState: LiveData<AuthState>
+        get() = _getListState
 
     init {
         getFollowerList()
     }
+
     fun getFollowerList() {
         viewModelScope.launch {
             followerRepository.getUserList()
                 .onSuccess { response ->
                     _followerListLiveData.value = response
-                    Log.e("getlist", response.toString())
+                    _getListState.value = AuthState.SUCCESS
                 }
                 .onFailure {
-                    Log.e("getlist", "fail")
+                    _getListState.value = AuthState.FAIL
                 }
         }
     }

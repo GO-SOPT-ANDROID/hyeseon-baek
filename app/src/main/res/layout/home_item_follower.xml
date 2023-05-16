@@ -9,14 +9,14 @@
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content">
 
 
    <ImageView
        android:id="@+id/iv_follower_img"
        android:layout_width="100dp"
        android:layout_height="0dp"
-       android:src="@{follower.avatar}"
+       imageUrl ="@{follower.avatar}"
        android:padding="10dp"
        app:layout_constraintDimensionRatio="1:1"
        app:layout_constraintStart_toStartOf="parent"

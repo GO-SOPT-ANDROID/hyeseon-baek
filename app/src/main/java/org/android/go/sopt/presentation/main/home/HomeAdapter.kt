@@ -23,7 +23,8 @@ class HomeAdapter() : ListAdapter<Follower, HomeAdapter.FollowerViewHolder>(diff
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {
-        val binding = HomeItemFollowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            HomeItemFollowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FollowerViewHolder(binding)
     }
 
@@ -33,7 +34,7 @@ class HomeAdapter() : ListAdapter<Follower, HomeAdapter.FollowerViewHolder>(diff
 
 
     companion object {
-        val diffUtil = object:DiffUtil.ItemCallback<Follower>(){
+        val diffUtil = object : DiffUtil.ItemCallback<Follower>() {
             override fun areItemsTheSame(
                 oldItem: Follower,
                 newItem: Follower
@@ -49,6 +50,4 @@ class HomeAdapter() : ListAdapter<Follower, HomeAdapter.FollowerViewHolder>(diff
             }
         }
     }
-
-
 }

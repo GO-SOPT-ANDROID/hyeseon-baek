@@ -1,5 +1,6 @@
 package org.android.go.sopt.data.repositoryImpl
 
+import org.android.go.sopt.data.model.datasource.FollowerDataSource
 import org.android.go.sopt.data.model.main.Follower
 import org.android.go.sopt.data.service.FollowerApiService
 import org.android.go.sopt.domain.FollowerRepository
@@ -8,10 +9,10 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class FollowerRepositoryImpl @Inject constructor(
-    private val apiService: FollowerApiService
+    private val followerDataSource: FollowerDataSource
 ) : FollowerRepository {
     override suspend fun getUserList(): Result<List<Follower>> =
        runCatching {
-           apiService.getFollowerList().convertToFollower()
+           followerDataSource.getFollowerList().convertToFollower()
        }
 }
