@@ -9,8 +9,3 @@ fun View.showSnackbar(message: String) {
     Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
 }
 
-fun RecyclerView.scrollToTop() {
-    layoutManager?.apply {
-        smoothScrollToPosition(0)
-    }
-}

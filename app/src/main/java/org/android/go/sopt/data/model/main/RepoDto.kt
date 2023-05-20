@@ -1,4 +1,4 @@
-package org.android.go.sopt.data
+package org.android.go.sopt.data.model.main
 
 class RepoDto : ArrayList<RepoDto.RepoDtoItem>(){
     data class RepoDtoItem(

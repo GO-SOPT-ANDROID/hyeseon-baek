@@ -9,17 +9,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import org.android.go.sopt.R
 import androidx.activity.viewModels
-import org.android.go.sopt.data.User
+import dagger.hilt.android.AndroidEntryPoint
+import org.android.go.sopt.data.model.main.User
+import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
-import org.android.go.sopt.presentation.join.JoinActivity
+import org.android.go.sopt.presentation.signup.SignupActivity
 import org.android.go.sopt.util.PrefUtilObject
 import org.android.go.sopt.util.PrefUtilObject.getID
 import org.android.go.sopt.util.PrefUtilObject.getPW
 import org.android.go.sopt.util.extension.getParcelized
 import org.android.go.sopt.util.extension.hideKeyboard
 import org.android.go.sopt.util.extension.showToast
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
@@ -32,8 +34,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         goMain()
         setContentView(binding.root)
-        setSignupbtnEvent()
-        setLoginbtnEvent()
+        setSignupBtnEvent()
+        setLoginBtnEvent()
         initLayout()
     }
 
@@ -48,28 +50,33 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
-    private fun setLoginbtnEvent(){
+    private fun setLoginBtnEvent(){
         binding.loginBtn.setOnClickListener {
-            if(isLoginCheck()){
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra(EXTRA_USER, userData)
-                startActivity(intent)
-                showToast(getString(R.string.login_success_string))
-                PrefUtilObject.setID(this,userData?.id.toString())
-                PrefUtilObject.setPW(this,userData?.pw.toString())
-            }
+            completeSignIn()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(EXTRA_USER, userData)
+            startActivity(intent)
+            showToast(getString(R.string.login_success_string))
+            PrefUtilObject.setID(this, userData?.id.toString())
+            PrefUtilObject.setPW(this, userData?.pw.toString())
         }
     }
 
-    private fun isLoginCheck(): Boolean{
-        return userData?.id  == binding.etId.text.toString() && userData?.pw == binding.etPw.text.toString()
+    private fun completeSignIn() {
+        val userData = viewModel.getUser()
+        viewModel.signIn(
+            RequestSignInDto(
+                id = userData.id,
+                password = userData.pw,
+            )
+        )
     }
 
     private fun isSavedCheck():Boolean{
         return getID(this).isNotBlank() && getPW(this).isNotBlank()
     }
 
-    private fun setSignupbtnEvent() {
+    private fun setSignupBtnEvent() {
         signupResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK){
@@ -79,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         binding.joinBtn.setOnClickListener {
-            val joinIntent = Intent(this,JoinActivity::class.java)
+            val joinIntent = Intent(this,SignupActivity::class.java)
             signupResultLauncher.launch(joinIntent)
         }
     }

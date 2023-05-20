@@ -2,16 +2,16 @@ package org.android.go.sopt.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
-import org.android.go.sopt.data.User
+import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.main.gallery.GalleryFragment
 import org.android.go.sopt.presentation.main.home.HomeFragment
 import org.android.go.sopt.presentation.main.search.SearchFragment
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var userData : User? = null
     private lateinit var binding: ActivityMainBinding
