@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.AuthState
-import org.android.go.sopt.data.model.request.RequestSignUpDto
+import org.android.go.sopt.data.model.remote.request.RequestSignUpDto
 import org.android.go.sopt.databinding.ActivitySignupBinding
 import org.android.go.sopt.presentation.login.LoginActivity
 import org.android.go.sopt.util.extension.showToast

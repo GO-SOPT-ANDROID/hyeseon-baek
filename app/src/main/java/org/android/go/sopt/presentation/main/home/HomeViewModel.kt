@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.model.AuthState
-import org.android.go.sopt.data.model.main.Follower
-import org.android.go.sopt.domain.FollowerRepository
+import org.android.go.sopt.domain.model.Follower
+import org.android.go.sopt.domain.repository.FollowerRepository
 import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel

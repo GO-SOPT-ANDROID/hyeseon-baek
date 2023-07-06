@@ -1,6 +1,6 @@
-package org.android.go.sopt.data.model.datasource
+package org.android.go.sopt.data.datasource
 
-import org.android.go.sopt.data.model.response.ResponseFollowerDto
+import org.android.go.sopt.data.model.remote.response.ResponseFollowerDto
 import org.android.go.sopt.data.service.FollowerApiService
 import javax.inject.Inject
 

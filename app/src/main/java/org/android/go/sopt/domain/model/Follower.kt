@@ -1,4 +1,4 @@
-package org.android.go.sopt.data.model.main
+package org.android.go.sopt.domain.model
 
 data class Follower(
     val firstName: String,

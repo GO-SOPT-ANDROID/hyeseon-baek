@@ -4,9 +4,9 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.AuthState
-import org.android.go.sopt.data.model.main.User
-import org.android.go.sopt.data.model.request.RequestSignUpDto
-import org.android.go.sopt.domain.AuthRepository
+import org.android.go.sopt.domain.model.User
+import org.android.go.sopt.data.model.remote.request.RequestSignUpDto
+import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.Constants.ID_MAX_LENGTH
 import org.android.go.sopt.util.Constants.ID_MIN_LENGTH
 import org.android.go.sopt.util.Constants.PW_MAX_LENGTH

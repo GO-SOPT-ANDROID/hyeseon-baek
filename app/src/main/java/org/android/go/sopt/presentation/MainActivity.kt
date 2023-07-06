@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.main.User
+import org.android.go.sopt.domain.model.User
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.main.gallery.GalleryFragment
 import org.android.go.sopt.presentation.main.home.HomeFragment

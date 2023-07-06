@@ -1,8 +1,8 @@
-package org.android.go.sopt.data.model.response
+package org.android.go.sopt.data.model.remote.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.android.go.sopt.data.model.main.Follower
+import org.android.go.sopt.domain.model.Follower
 
 @Serializable
 data class ResponseFollowerDto(

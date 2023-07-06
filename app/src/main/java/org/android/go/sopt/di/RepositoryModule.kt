@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.android.go.sopt.domain.AuthRepository
+import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.data.repositoryImpl.AuthRepositoryImpl
 import org.android.go.sopt.data.repositoryImpl.FollowerRepositoryImpl
-import org.android.go.sopt.domain.FollowerRepository
+import org.android.go.sopt.domain.repository.FollowerRepository
 import javax.inject.Singleton
 
 @Module

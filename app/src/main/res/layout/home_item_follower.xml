@@ -4,7 +4,7 @@
    <data>
       <variable
       name="follower"
-      type="org.android.go.sopt.data.model.main.Follower" />
+      type="org.android.go.sopt.domain.model.Follower" />
    </data>
 
    <androidx.constraintlayout.widget.ConstraintLayout

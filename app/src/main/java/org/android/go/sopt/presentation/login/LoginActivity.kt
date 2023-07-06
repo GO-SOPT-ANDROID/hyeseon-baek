@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.AuthState
-import org.android.go.sopt.data.model.main.User
-import org.android.go.sopt.data.model.request.RequestSignInDto
+import org.android.go.sopt.domain.model.User
+import org.android.go.sopt.data.model.remote.request.RequestSignInDto
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.MainActivity
 import org.android.go.sopt.presentation.signup.SignupActivity

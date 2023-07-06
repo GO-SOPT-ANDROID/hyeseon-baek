@@ -1,9 +1,9 @@
 package org.android.go.sopt.data.service
 
-import org.android.go.sopt.data.model.request.RequestSignInDto
-import org.android.go.sopt.data.model.request.RequestSignUpDto
-import org.android.go.sopt.data.model.response.ResponseSignInDto
-import org.android.go.sopt.data.model.response.ResponseSignUpDto
+import org.android.go.sopt.data.model.remote.request.RequestSignInDto
+import org.android.go.sopt.data.model.remote.request.RequestSignUpDto
+import org.android.go.sopt.data.model.remote.response.ResponseSignInDto
+import org.android.go.sopt.data.model.remote.response.ResponseSignUpDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.model.AuthState
-import org.android.go.sopt.data.model.main.User
-import org.android.go.sopt.data.model.request.RequestSignInDto
-import org.android.go.sopt.domain.AuthRepository
+import org.android.go.sopt.domain.model.User
+import org.android.go.sopt.data.model.remote.request.RequestSignInDto
+import org.android.go.sopt.domain.repository.AuthRepository
 import javax.inject.Inject
 
 @HiltViewModel

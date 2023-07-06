@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.data.model.main.Follower
-import org.android.go.sopt.data.model.response.ResponseFollowerDto
+import org.android.go.sopt.domain.model.Follower
 import org.android.go.sopt.databinding.HomeItemFollowerBinding
 
 class HomeAdapter() : ListAdapter<Follower, HomeAdapter.FollowerViewHolder>(diffUtil) {
