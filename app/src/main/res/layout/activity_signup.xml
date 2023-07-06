@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:text="@string/join_tv_singup"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -36,24 +36,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:text="@string/login_tv_id"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/signup_tv_head" />
 
-        <EditText
-            android:id="@+id/signup_et_id"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/idInputLayout"
+            style="@style/TextInputLayoutStyle"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/login_et_id"
-            android:inputType="text"
-            android:text="@={vm._id}"
-            app:layout_constraintTop_toBottomOf="@id/signup_tv_id">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_tv_id">
 
-        </EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_et_id"
+                android:hint="@string/login_et_id"
+                android:inputType="text"
+                android:afterTextChanged="@{(text) -> vm.validateId(text.toString())}"
+                android:text="@={vm._id}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <TextView
             android:id="@+id/signup_tv_pw"
@@ -65,18 +76,30 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/signup_et_id" />
+            app:layout_constraintTop_toBottomOf="@id/idInputLayout" />
 
 
-        <EditText
-            android:id="@+id/signup_et_pw"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/pwInputLayout"
+            style="@style/TextInputLayoutStyle"
+            app:passwordToggleEnabled="true"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/login_et_pw"
-            android:inputType="text"
-            android:text="@={vm._password}"
-            app:layout_constraintTop_toBottomOf="@id/signup_tv_pw" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_tv_pw">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_et_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> vm.validatePassword(text.toString())}"
+                android:hint="@string/login_et_pw"
+                android:inputType="textPassword"
+                android:text="@={vm._password}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/signup_tv_name"
@@ -88,18 +111,27 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/signup_et_pw" />
+            app:layout_constraintTop_toBottomOf="@id/pwInputLayout" />
 
-
-        <EditText
-            android:id="@+id/signup_et_name"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/nameInputLayout"
+            style="@style/TextInputLayoutStyle"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/join_et_name"
-            android:inputType="text"
-            android:text="@={vm._name}"
-            app:layout_constraintTop_toBottomOf="@id/signup_tv_name" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_tv_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> vm.validateName(text.toString())}"
+                android:hint="@string/join_et_name"
+                android:inputType="text"
+                android:text="@={vm._name}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -112,29 +144,40 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/signup_et_name" />
+            app:layout_constraintTop_toBottomOf="@id/nameInputLayout" />
 
-
-        <EditText
-            android:id="@+id/signup_et_special"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
+            style="@style/TextInputLayoutStyle"
             android:hint="@string/join_et_special"
-            android:inputType="text"
-            android:text="@={vm._speciality}"
-            app:layout_constraintTop_toBottomOf="@id/signup_tv_special" />
+            android:id="@+id/specialityInputLayout"
+            android:layout_marginHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_tv_special">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_et_special"
+                style="@style/TextInputLayoutStyle"
+                android:inputType="text"
+                android:afterTextChanged="@{(text) -> vm.validateSpeciality(text.toString())}"
+                android:text="@={vm._speciality}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/signup_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:paddingVertical="15dp"
             android:enabled="false"
             android:text="@string/login_btn_signup"
-            app:layout_constraintTop_toBottomOf="@id/signup_et_special" />
+            app:layout_constraintTop_toBottomOf="@id/specialityInputLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

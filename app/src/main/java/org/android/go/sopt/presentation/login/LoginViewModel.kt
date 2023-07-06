@@ -1,15 +1,17 @@
 package org.android.go.sopt.presentation.login
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.android.go.sopt.data.model.AuthState
 import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.domain.AuthRepository
 import javax.inject.Inject
-import dagger.hilt.android.lifecycle.HiltViewModel
+
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val apiAuthRepository: AuthRepository): ViewModel(){
 
@@ -21,13 +23,16 @@ class LoginViewModel @Inject constructor(private val apiAuthRepository: AuthRepo
     val password: String
         get() = requireNotNull(_password.value).trim()
 
+    private val _signinState = MutableLiveData<AuthState>()
+    val signinState: LiveData<AuthState>
+        get() = _signinState
+
     fun signIn(requestSignInDto: RequestSignInDto) = viewModelScope.launch {
         val response = apiAuthRepository.postSignIn(requestSignInDto)
         if (response.isSuccessful) {
-            //TODO: livedata로 state 적용해보기
-            Log.e("signin", "success")
+            _signinState.value = AuthState.SUCCESS
         } else {
-            Log.e("signin", "fail")
+            _signinState.value = AuthState.FAIL
         }
     }
 

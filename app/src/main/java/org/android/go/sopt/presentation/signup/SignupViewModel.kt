@@ -1,10 +1,8 @@
 package org.android.go.sopt.presentation.signup
 
-import android.util.Log
 import androidx.lifecycle.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.android.go.sopt.R
 import org.android.go.sopt.data.model.AuthState
 import org.android.go.sopt.data.model.main.User
 import org.android.go.sopt.data.model.request.RequestSignUpDto
@@ -16,7 +14,8 @@ import org.android.go.sopt.util.Constants.PW_MIN_LENGTH
 import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
-class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRepository): ViewModel()  {
+class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRepository) :
+    ViewModel() {
     val _id = MutableLiveData("")
     val id: String
         get() = requireNotNull(_id.value).trim()
@@ -38,10 +37,10 @@ class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRep
         get() = _signupState
 
 
-    private val _isIdValid = MutableLiveData<Boolean>()
-    private val _isPasswordValid = MutableLiveData<Boolean>()
-    private val _isNameValid = MutableLiveData<Boolean>()
-    private val _isSpecialityValid = MutableLiveData<Boolean>()
+    val _isIdValid = MutableLiveData<Boolean>()
+    val _isPasswordValid = MutableLiveData<Boolean>()
+    val _isNameValid = MutableLiveData<Boolean>()
+    val _isSpecialityValid = MutableLiveData<Boolean>()
 
 
     val isValidAndFilled: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -51,25 +50,32 @@ class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRep
         addSource(_isSpecialityValid) { value = validateFields() }
     }
 
-    init {
-        _isIdValid.value = false
-        _isPasswordValid.value = false
-        _isNameValid.value = false
-        _isSpecialityValid.value = false
+    val idErrorMessage: LiveData<Int> = Transformations.map(_isIdValid) { isValid ->
+        if (!isValid) R.string.invalid_id_error_message else 0
     }
+
+    val passwordErrorMessage: LiveData<Int> = Transformations.map(_isPasswordValid) { isValid ->
+        if (!isValid) R.string.invalid_password_error_message else 0
+    }
+
+    val nameErrorMessage: LiveData<Int> = Transformations.map(_isNameValid) { isValid ->
+        if (!isValid) R.string.invalid_name_error_message else 0
+    }
+
+    val specialityErrorMessage: LiveData<Int> = Transformations.map(_isSpecialityValid) { isValid ->
+        if (!isValid) R.string.invalid_speciality_error_message else 0
+    }
+
     private fun validateFields(): Boolean {
-        return _isIdValid.value == true
-                && _isPasswordValid.value == true
-                && _isNameValid.value == true
-                && _isSpecialityValid.value == true
+        return _isIdValid.value == true && _isPasswordValid.value == true && _isNameValid.value == true && _isSpecialityValid.value == true
     }
 
     fun validateId(text: String) {
-        _isIdValid.value = text.trim().length in ID_MIN_LENGTH..ID_MAX_LENGTH
+        _isIdValid.value = text.trim().matches(Regex(ID_REGEX))
     }
 
     fun validatePassword(text: String) {
-        _isPasswordValid.value = text.trim().length in PW_MIN_LENGTH..PW_MAX_LENGTH
+        _isPasswordValid.value = text.trim().matches(Regex(PW_REGEX))
     }
 
     fun validateName(text: String) {
@@ -88,12 +94,17 @@ class SignupViewModel @Inject constructor(private val apiAuthRepository: AuthRep
             _signupState.value = AuthState.FAIL
         }
     }
+
     fun getUser(): User {
         return User(
-            id = id,
-            pw = password,
-            name = name,
-            special = speciality
+            id = id, pw = password, name = name, special = speciality
         )
+    }
+
+    companion object {
+        const val ID_REGEX =
+            "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{${ID_MIN_LENGTH},${ID_MAX_LENGTH}}$"
+        const val PW_REGEX =
+            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{${PW_MIN_LENGTH},${PW_MAX_LENGTH}}$"
     }
 }
